@@ -125,6 +125,20 @@ button.edit:hover {
   margin-top: 1em;
 }
 
+#auth_links {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#auth_links a {
+  text-decoration: none;
+  color: cornflowerblue;
+}
+
+#auth_links a:hover {
+  color: royalblue;
+}
+
 small {
   display: block;
   text-align: center;

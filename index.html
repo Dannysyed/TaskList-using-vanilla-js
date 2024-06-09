@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Task List</title>
-  <link type="text/css" rel="stylesheet" href="task_list.css">
-</head>
-
-<body>
-  <main>
-    <h1>Task List</h1>
-    <div id="tasks">
-      <label for="task_list">Task List</label><br>
-      <textarea id="task_list" rows="6" cols="50"></textarea>
-    </div>
-    <div>
-      <label for="task">Task</label><br>
-      <input type="text" name="task" id="task">
-    </div>
-    <div>
-      <input type="button" name="add_task" id="add_task" value="Add Task"><br>
-      <input type="button" name="clear_tasks" id="clear_tasks" value="Clear Tasks">
-    </div>
-  </main>
-  <small>&copy; "YourName/Student Number Here" 2022</small>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="task_list.js"></script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Task List</title>
+    <link type="text/css" rel="stylesheet" href="task_list.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Task List</h1>
+      <div id="task_input_container">
+        <label for="task">New Task</label><br />
+        <input
+          type="text"
+          name="task"
+          id="task"
+          placeholder="Enter a new task"
+        />
+        <label for="priority">Priority</label><br />
+        <select id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <label for="due_date">Due Date</label><br />
+        <input type="date" id="due_date" />
+        <div>
+          <input type="button" name="add_task" id="add_task" value="Add Task" />
+          <input
+            type="button"
+            name="clear_tasks"
+            id="clear_tasks"
+            value="Clear All Tasks"
+          />
+        </div>
+      </div>
+      <div id="tasks">
+        <ul id="task_list"></ul>
+      </div>
+      <div id="filters">
+        <button id="all_tasks">All</button>
+        <button id="completed_tasks">Completed</button>
+        <button id="pending_tasks">Pending</button>
+      </div>
+      <div id="sort">
+        <button id="sort_priority">Sort by Priority</button>
+        <button id="sort_due_date">Sort by Due Date</button>
+      </div>
+      <div>
+        <label for="dark_mode_toggle">Dark Mode</label>
+        <input type="checkbox" id="dark_mode_toggle" />
+      </div>
+    </main>
+    <small>&copy; Daniyal Mahmood/8877543 2023</small>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="task_list.js"></script>
+  </body>
 </html>

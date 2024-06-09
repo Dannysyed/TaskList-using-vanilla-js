@@ -23,97 +23,113 @@ $(document).ready(() => {
           task.dueDate ? task.dueDate : "No due date"
         }</span>
                                 <button class="complete">&#x2713;</button>
-                                <button class="edit">&#9998;</button>
-                                <button class="delete">&#x2715;</button></li>`);
+                                <button class="edit">&#x270E;</button>
+                                <button class="delete">&#x2715;</button>
+                            </li>`);
+        taskList.append(taskItem);
+
         taskItem.find(".complete").click(() => {
           tasks[index].completed = !tasks[index].completed;
           updateLocalStorage();
           updateTaskList(filter);
         });
-        taskItem.find(".edit").click(() => {
-          const newTaskName = prompt("Edit Task Name", task.name);
-          const newTaskPriority = prompt(
-            "Edit Task Priority (low, medium, high)",
-            task.priority
-          );
-          const newTaskDueDate = prompt(
-            "Edit Task Due Date (yyyy-mm-dd)",
-            task.dueDate
-          );
-          if (newTaskName) tasks[index].name = newTaskName.trim();
-          if (newTaskPriority) tasks[index].priority = newTaskPriority.trim();
-          if (newTaskDueDate) tasks[index].dueDate = newTaskDueDate.trim();
-          updateLocalStorage();
-          updateTaskList(filter);
-        });
+
         taskItem.find(".delete").click(() => {
           tasks.splice(index, 1);
           updateLocalStorage();
           updateTaskList(filter);
         });
-        taskList.append(taskItem);
+
+        taskItem.find(".edit").click(() => {
+          const newTaskName = prompt("Edit task name:", task.name);
+          const newPriority = prompt("Edit priority:", task.priority);
+          const newDueDate = prompt("Edit due date:", task.dueDate);
+          if (newTaskName) tasks[index].name = newTaskName;
+          if (newPriority) tasks[index].priority = newPriority;
+          if (newDueDate) tasks[index].dueDate = newDueDate;
+          updateLocalStorage();
+          updateTaskList(filter);
+        });
       });
   };
 
-  const sortTasksByPriority = () => {
-    tasks.sort((a, b) => {
-      const priorities = { low: 1, medium: 2, high: 3 };
-      return priorities[b.priority] - priorities[a.priority];
-    });
-    updateLocalStorage();
-    updateTaskList();
-  };
-
-  const sortTasksByDueDate = () => {
-    tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    updateLocalStorage();
-    updateTaskList();
-  };
-
   $("#add_task").click(() => {
-    const taskName = $("#task").val().trim();
-    const taskPriority = $("#priority").val();
-    const taskDueDate = $("#due_date").val();
+    const taskName = $("#task").val();
+    const priority = $("#priority").val();
+    const dueDate = $("#due_date").val();
 
-    if (taskName === "") {
-      alert("Please enter a task.");
-      $("#task").focus();
-    } else {
+    if (taskName) {
       tasks.push({
         name: taskName,
-        priority: taskPriority,
-        dueDate: taskDueDate,
+        priority: priority,
+        dueDate: dueDate,
         completed: false,
       });
       updateLocalStorage();
       updateTaskList();
-
       $("#task").val("");
       $("#priority").val("low");
       $("#due_date").val("");
-      $("#task").focus();
+      closeModal();
+    } else {
+      alert("Task name is required.");
     }
   });
 
   $("#clear_tasks").click(() => {
-    tasks.length = 0;
+    tasks = [];
     updateLocalStorage();
     updateTaskList();
-    $("#task").focus();
   });
 
   $("#all_tasks").click(() => updateTaskList("all"));
   $("#completed_tasks").click(() => updateTaskList("completed"));
   $("#pending_tasks").click(() => updateTaskList("pending"));
 
-  $("#sort_priority").click(sortTasksByPriority);
-  $("#sort_due_date").click(sortTasksByDueDate);
-
-  $("#dark_mode_toggle").change(() => {
-    $("body").toggleClass("dark-mode");
+  $("#sort_priority").click(() => {
+    tasks.sort((a, b) => {
+      const priorities = ["low", "medium", "high"];
+      return priorities.indexOf(a.priority) - priorities.indexOf(b.priority);
+    });
+    updateTaskList();
   });
 
-  $("#task").focus();
-  studentName.text("\u00A9 Daniyal Mahmood/8877543 2023");
+  $("#sort_due_date").click(() => {
+    tasks.sort((a, b) => {
+      if (a.dueDate && b.dueDate)
+        return new Date(a.dueDate) - new Date(b.dueDate);
+      if (!a.dueDate) return 1;
+      if (!b.dueDate) return -1;
+    });
+    updateTaskList();
+  });
+
+  // Modal functionality
+  const modal = $("#task_modal");
+  const openModalButton = $("#open_modal");
+  const closeModalButton = $(".close");
+
+  const openModal = () => {
+    modal.show();
+  };
+
+  const closeModal = () => {
+    modal.hide();
+  };
+
+  openModalButton.click(() => {
+    openModal();
+  });
+
+  closeModalButton.click(() => {
+    closeModal();
+  });
+
+  $(window).click((event) => {
+    if (event.target === modal[0]) {
+      closeModal();
+    }
+  });
+
   updateTaskList();
 });

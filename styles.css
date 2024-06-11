@@ -1,3 +1,4 @@
+/* General Styles */
 body {
   font-family: "Arial", Helvetica, sans-serif;
   background-color: #f9f9f9;
@@ -14,6 +15,7 @@ body.dark-mode {
   color: #f9f9f9;
 }
 
+/* Headings */
 h1,
 h2 {
   font-weight: 300;
@@ -34,6 +36,7 @@ body.dark-mode h2 {
   color: #f9f9f9;
 }
 
+/* Navigation Links */
 nav#auth_links {
   text-align: center;
   margin-bottom: 1em;
@@ -51,6 +54,7 @@ nav#auth_links a:hover {
   color: royalblue;
 }
 
+/* Buttons */
 button,
 input[type="button"] {
   padding: 0.75em 1.5em;
@@ -69,6 +73,7 @@ input[type="button"]:hover {
   background-color: royalblue;
 }
 
+/* Modal */
 #task_modal .modal-content {
   background-color: #fff;
   border-radius: 10px;
@@ -76,6 +81,7 @@ input[type="button"]:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   max-width: 500px;
   margin: 5% auto;
+  position: relative;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -91,7 +97,9 @@ body.dark-mode #task_modal .modal-content {
 
 #task_modal .close {
   color: #aaa;
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 28px;
   font-weight: bold;
   transition: color 0.3s;
@@ -117,6 +125,7 @@ body.dark-mode #task_modal .modal-content {
   padding-top: 60px;
 }
 
+/* Inputs */
 input[type="text"],
 input[type="date"],
 select {
@@ -128,6 +137,7 @@ select {
   font-size: 1em;
 }
 
+/* Task List Section */
 section#task_list_section {
   margin-bottom: 2em;
   padding: 1em;
@@ -166,6 +176,7 @@ body.dark-mode #task_list li.completed {
   color: #777;
 }
 
+/* Task Buttons */
 button.complete {
   background-color: lightgreen;
 }
@@ -190,6 +201,7 @@ button.delete:hover {
   background-color: red;
 }
 
+/* Filters and Sort */
 #filters,
 #sort {
   display: flex;
@@ -208,11 +220,13 @@ button.delete:hover {
   background-color: darkgray;
 }
 
+/* Dark Mode Toggle */
 #dark_mode_toggle {
   margin: 0 auto;
   display: block;
 }
 
+/* Footer */
 footer {
   text-align: center;
   margin-top: 2em;

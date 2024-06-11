@@ -1,47 +1,65 @@
+/* General Styles */
 body {
   font-family: "Arial", Helvetica, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f0f0f0;
+  color: #333;
   margin: 0 auto;
-  width: 90%;
-  max-width: 700px;
   padding: 2em;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
   transition: background-color 0.3s, color 0.3s;
 }
 
+/* Heading */
 h1 {
-  font-size: 2.5em;
+  font-size: 2em;
+  font-weight: bold;
   color: #333;
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
+  letter-spacing: 1px;
 }
 
+/* Container */
 #signin_container,
 #signup_container {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 1.5em;
   margin-bottom: 2em;
 }
 
+/* Input Fields */
 input[type="email"],
 input[type="password"],
 input[type="text"] {
-  padding: 0.5em;
+  padding: 1em;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1em;
+  transition: border-color 0.3s;
 }
 
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  border-color: cornflowerblue;
+  outline: none;
+}
+
+/* Buttons */
 input[type="button"] {
-  padding: 0.5em 1em;
+  padding: 1em;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: cornflowerblue;
   color: white;
   cursor: pointer;
   font-size: 1em;
+  font-weight: bold;
+  text-transform: uppercase;
   transition: background-color 0.3s;
 }
 
@@ -49,20 +67,23 @@ input[type="button"]:hover {
   background-color: royalblue;
 }
 
+/* Auth Links */
 #auth_links {
   text-align: center;
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 #auth_links a {
   text-decoration: none;
   color: cornflowerblue;
+  font-weight: bold;
 }
 
 #auth_links a:hover {
   color: royalblue;
 }
 
+/* Footer */
 small {
   display: block;
   text-align: center;

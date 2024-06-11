@@ -1,8 +1,5 @@
-"use strict";
-
 $(document).ready(() => {
-  const studentName = $("small");
-  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
   const updateLocalStorage = () => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -11,6 +8,7 @@ $(document).ready(() => {
   const updateTaskList = (filter = "all") => {
     const taskList = $("#task_list");
     taskList.empty();
+
     tasks
       .filter((task) => {
         if (filter === "all") return true;
@@ -18,14 +16,15 @@ $(document).ready(() => {
         if (filter === "pending") return !task.completed;
       })
       .forEach((task, index) => {
-        const taskItem = $(`<li ${task.completed ? 'class="completed"' : ""}>
-                                <span>${task.name} - ${task.priority} - ${
-          task.dueDate ? task.dueDate : "No due date"
-        }</span>
-                                <button class="complete">&#x2713;</button>
-                                <button class="edit">&#x270E;</button>
-                                <button class="delete">&#x2715;</button>
-                            </li>`);
+        const taskItem = $(`
+            <li class="${task.completed ? "completed" : ""}">
+              <span>${task.name} - ${task.priority} - ${task.dueDate}</span>
+              <div>
+                <button class="complete">${task.completed ? "✓" : "○"}</button>
+                <button class="edit">&#x270E;</button>
+                <button class="delete">&#x2715;</button>
+              </div>
+            </li>`);
         taskList.append(taskItem);
 
         taskItem.find(".complete").click(() => {
@@ -61,8 +60,8 @@ $(document).ready(() => {
     if (taskName) {
       tasks.push({
         name: taskName,
-        priority: priority,
-        dueDate: dueDate,
+        priority,
+        dueDate,
         completed: false,
       });
       updateLocalStorage();
@@ -77,7 +76,7 @@ $(document).ready(() => {
   });
 
   $("#clear_tasks").click(() => {
-    tasks = [];
+    tasks.length = 0;
     updateLocalStorage();
     updateTaskList();
   });
@@ -98,23 +97,21 @@ $(document).ready(() => {
     tasks.sort((a, b) => {
       if (a.dueDate && b.dueDate)
         return new Date(a.dueDate) - new Date(b.dueDate);
-      if (!a.dueDate) return 1;
-      if (!b.dueDate) return -1;
+      return !a.dueDate ? 1 : -1;
     });
     updateTaskList();
   });
 
-  // Modal functionality
   const modal = $("#task_modal");
   const openModalButton = $("#open_modal");
   const closeModalButton = $(".close");
 
   const openModal = () => {
-    modal.show();
+    modal.fadeIn();
   };
 
   const closeModal = () => {
-    modal.hide();
+    modal.fadeOut();
   };
 
   openModalButton.click(() => {
@@ -132,4 +129,8 @@ $(document).ready(() => {
   });
 
   updateTaskList();
+
+  $("#dark_mode_toggle").change(function () {
+    $("body").toggleClass("dark-mode", this.checked);
+  });
 });

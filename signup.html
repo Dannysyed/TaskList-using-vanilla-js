@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,31 +10,33 @@
     <main>
       <h1>Sign Up</h1>
       <div id="signup_container">
-        <label for="name">Name</label><br />
+        <label for="name">Name</label>
         <input
           type="text"
           name="name"
           id="name"
           placeholder="Enter your name"
-        /><br />
-        <label for="email">Email</label><br />
+        />
+        <label for="email">Email</label>
         <input
           type="email"
           name="email"
           id="email"
           placeholder="Enter your email"
-        /><br />
-        <label for="password">Password</label><br />
+        />
+        <label for="password">Password</label>
         <input
           type="password"
           name="password"
           id="password"
           placeholder="Enter your password"
-        /><br />
+        />
         <input type="button" name="signup" id="signup" value="Sign Up" />
         <div id="signup_message"></div>
       </div>
-      <p>Already have an account? <a href="signin.html">Sign In</a></p>
+      <p id="auth_links">
+        Already have an account? <a href="signin.html">Sign In</a>
+      </p>
     </main>
     <small>&copy; Daniyal Mahmood/8877543 2023</small>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

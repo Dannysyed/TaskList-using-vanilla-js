@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,11 +15,15 @@
       </div>
       <h1>Task Management</h1>
 
-      <button id="open_modal">Add New Task</button>
+      <button id="open_modal" aria-haspopup="dialog" aria-controls="task_modal">
+        Add New Task
+      </button>
 
-      <div id="task_modal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
+      <div id="task_modal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content" role="document">
+          <span class="close" role="button" tabindex="0" aria-label="Close"
+            >&times;</span
+          >
           <h2>Add New Task</h2>
           <div id="task_input_container">
             <label for="task">New Task</label>
@@ -70,7 +74,7 @@
         </div>
       </section>
 
-      <div>
+      <div style="text-align: center">
         <label for="dark_mode_toggle">Dark Mode</label>
         <input type="checkbox" id="dark_mode_toggle" />
       </div>
